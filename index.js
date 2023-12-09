@@ -86,3 +86,46 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+var totalMonths = finances.length;
+var sum = 0;
+var change = 0;
+var profit = 0;
+var loss = 0;
+
+var profitIndex = 0;
+var lossIndex = 0;
+
+for (var i = 0; i < finances.length; i++) {
+  // add the value in finance from each index into the sum
+  sum += finances[i][1] 
+
+};
+
+for (var i = 0; i < finances.length - 1; i++) {
+  // add the value in finance from each index into the sum
+  change += (finances[i+1][1] - finances[i][1]); 
+ 
+  // check the greatest monthly profit
+  if ((finances[i+1][1] - finances[i][1]) > profit) {
+    profit = finances[i+1][1] - finances[i][1]
+    profitIndex = i+1
+  } 
+
+  // check the greatest monthly loss
+  if ((finances[i+1][1] - finances[i][1]) < loss) {
+    loss = finances[i+1][1] - finances[i][1]
+    lossIndex = i+1
+  } 
+};
+
+var avgChange = change/(totalMonths - 1);
+
+
+console.log("Financial Analysis\
+\n------------------\
+\nTotal Months: " + totalMonths + "\
+\nTotal: $" + sum + "\
+\nAverage Change: " + avgChange.toFixed(2) + "\
+\nGreatest Increase in Profits/Losses: " + finances[profitIndex][0] + " ($" + (finances[profitIndex][1] - finances[profitIndex - 1][1]) + ")\
+\nGreatest Decrease in Profits/Losses: " + finances[lossIndex][0] + " ($" + (finances[lossIndex][1] - finances[lossIndex - 1][1]) + ")");
